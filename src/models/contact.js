@@ -1,34 +1,14 @@
 import mongoose from 'mongoose';
 
-const contactSchema = new mongoose.Schema(
-  {
-    name: {
-      type: String,
-      required: true,
-    },
-    phoneNumber: {
-      type: String,
-      required: true,
-    },
-    email: {
-      type: String,
-    },
-    isFavourite: {
-      type: Boolean,
-      default: false,
-    },
-    contactType: {
-      type: String,
-      enum: ['work', 'home', 'personal'],
-      default: 'personal',
-      required: true,
-    },
-  },
-  {
-    timestamps: true, // автоматичне створення createdAt і updatedAt
-  },
-);
-
+const contactSchema = new mongoose.Schema({
+  name: String,
+  phoneNumber: String,
+  email: String,
+  isFavourite: Boolean,
+  contactType: String,
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now },
+});
 const Contact = mongoose.model('Contact', contactSchema);
 
 export default Contact;
