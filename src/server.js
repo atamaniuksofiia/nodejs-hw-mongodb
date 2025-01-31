@@ -4,10 +4,9 @@ import pinoHttp from 'pino-http';
 import cors from 'cors';
 import { getEnv } from './utils/getEnv.js';
 import { ENV_VARS } from './constants/env.js';
-import {
-  getContacts,
-  getContactByIdController,
-} from './controllers/contactController.js';
+import contactsRouter from './routers/contacts.js';
+import { errorHandler } from './middlewares/errorHandler.js';
+import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
 export const startServer = () => {
   const app = express();
@@ -30,9 +29,11 @@ export const startServer = () => {
 
   app.use(loggerHttp);
 
-  app.get('/contacts', getContacts);
+  app.use('/contacts', contactsRouter);
 
-  app.get('/contacts/:contactId', getContactByIdController);
+  app.use(notFoundHandler);
+
+  app.use(errorHandler);
 
   const PORT = getEnv(ENV_VARS.PORT);
   app.listen(PORT, () => {
