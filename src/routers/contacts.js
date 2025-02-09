@@ -10,7 +10,7 @@ import {
 
 const router = express.Router();
 
-router.get('/', getContacts);
+router.get('/', ctrlWrapper(getContacts));
 router.get('/:contactId', ctrlWrapper(getContactByIdController));
 router.patch('/:contactId', ctrlWrapper(updateContactController));
 router.post('/', ctrlWrapper(createContactController));
