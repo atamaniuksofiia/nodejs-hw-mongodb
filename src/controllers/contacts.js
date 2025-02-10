@@ -7,7 +7,6 @@ import {
   createContact,
   deleteContactById,
 } from '../services/contacts.js';
-import createHttpError from 'http-errors';
 
 export const getContacts = async (req, res) => {
   const contacts = await getAllContacts();
