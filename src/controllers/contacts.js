@@ -9,7 +9,11 @@ import {
 } from '../services/contacts.js';
 
 export const getContacts = async (req, res) => {
+  console.log('✅ getContacts controller called!');
   const contacts = await getAllContacts();
+
+  console.log('Contacts found in the database:', contacts.length); // Логування кількості знайдених контактів
+  console.log('Contacts to be sent in response:', contacts);
   res.json({
     status: 200,
     message: 'Successfully found contacts!',
@@ -25,7 +29,7 @@ export const getContactByIdController = async (req, res) => {
     return res.status(404).json({
       status: 404,
       message: 'Contact not found',
-      data: null,
+      data: contact,
     });
   }
 

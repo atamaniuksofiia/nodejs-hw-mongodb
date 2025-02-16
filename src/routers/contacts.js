@@ -9,7 +9,7 @@ import {
 } from '../controllers/contacts.js';
 
 const router = express.Router();
-
+console.log('Contacts router is active!');
 router.get('/', ctrlWrapper(getContacts));
 router.get('/:contactId', ctrlWrapper(getContactByIdController));
 router.patch('/:contactId', ctrlWrapper(updateContactController));
