@@ -28,10 +28,10 @@ export const startServer = () => {
   const loggerHttp = pinoHttp({ logger });
 
   app.use(loggerHttp);
-
+  console.log('Registering /contacts route...');
   app.use('/contacts', contactsRouter);
 
-  app.use(notFoundHandler);
+  app.use('*', notFoundHandler);
 
   app.use(errorHandler);
 

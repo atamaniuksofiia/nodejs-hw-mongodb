@@ -8,14 +8,12 @@ import {
   deleteContactById,
 } from '../services/contacts.js';
 
-import { parsePaginationParams } from '../utils/parsePaginationParams.js';
-import { parseSortParams } from '../utils/parseSortParams.js';
-
 export const getContacts = async (req, res) => {
-  const { page, perPage } = parsePaginationParams(req.query);
-  const { sortBy, sortOrder } = parseSortParams(req.query);
+  console.log('✅ getContacts controller called!');
+  const contacts = await getAllContacts();
 
-  const contacts = await getAllContacts({ page, perPage, sortBy, sortOrder });
+  console.log('Contacts found in the database:', contacts.length); // Логування кількості знайдених контактів
+  console.log('Contacts to be sent in response:', contacts);
   res.json({
     status: 200,
     message: 'Successfully found contacts!',
