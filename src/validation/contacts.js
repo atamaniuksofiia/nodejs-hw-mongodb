@@ -38,4 +38,7 @@ export const createContactsSchema = Joi.object({
       'any.only': 'Contact type must be one of: home, personal, work',
       'any.required': 'Contact type is required',
     }),
+  isFavourite: Joi.boolean().optional().default(false).messages({
+    'boolean.base': 'isFavourite must be a boolean',
+  }),
 });
