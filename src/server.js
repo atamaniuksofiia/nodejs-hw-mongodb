@@ -35,6 +35,13 @@ export const startServer = () => {
 
   app.use(errorHandler);
 
+  app.use((err, req, res, next) => {
+    console.error(err); // Логування помилок
+    const statusCode = err.status || 500;
+    const message = err.message || 'Internal Server Error';
+    res.status(statusCode).json({ message });
+  });
+
   const PORT = getEnv(ENV_VARS.PORT);
   app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);

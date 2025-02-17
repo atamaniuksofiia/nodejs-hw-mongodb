@@ -23,6 +23,7 @@ export const getContacts = async (req, res) => {
 
 export const getContactByIdController = async (req, res) => {
   const { contactId } = req.params;
+  console.log('🔍 Received contactId:', contactId);
   const contact = await getContactById(contactId);
 
   if (!contact) {
